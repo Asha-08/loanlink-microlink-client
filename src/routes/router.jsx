@@ -7,6 +7,7 @@ import Register from "../pages/Authpage/Register/Register";
 import AllLoans from "../pages/Shared/All-loans/AllLoans";
 import AboutUs from "../pages/Shared/AboutUs/AboutUs";
 import Contact from "../pages/Shared/Contact/Contact";
+import ApplyLoan from "../pages/ApplyLoan/ApplyLoan";
 
 
 export const router = createBrowserRouter([
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
         {
           path: '/contact',
           Component:Contact
+        },
+        {
+          path:"/apply-loan",
+          Component:ApplyLoan
         },
     ]
   },
