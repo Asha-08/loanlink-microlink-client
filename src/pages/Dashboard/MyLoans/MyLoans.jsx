@@ -43,7 +43,20 @@ const MyLoans = () => {
         }
       }
     });
-  };
+  }
+
+  const handlePayment = async (loan) => {
+        const paymentInfo = {
+            cost: loan.applicationFee,
+            loanId: loan._id,
+            email: loan.email,
+            loanTitle: loan.loanTitle
+        }
+        const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);
+
+        console.log(res.data.url);
+        window.location.assign(res.data.url);
+    }
 
   return (
     <div>
@@ -95,15 +108,16 @@ const MyLoans = () => {
                   )}
                     {/* PAY Button - only if feeStatus = Unpaid */}
                   {loan.applicationFeeStatus === "unpaid" && (
-                    <Link to={`/dashboard/payment/${loan._id}`}>
-                    <button className="btn btn-warning btn-sm text-white">
+                    <button
+                      onClick={() => handlePayment(loan)}
+                      className="btn btn-sm btn-primary text-black"
+                    >
                       Pay
                     </button>
-                    </Link>
                   )}
 
                   {/* PAID Badge instead of button */}
-                  {loan.applicationFeeStatus === "Paid" && (
+                  {loan.applicationFeeStatus === "paid" && (
                     <span className="badge badge-success">Paid</span>
                   )}
                 </td>
