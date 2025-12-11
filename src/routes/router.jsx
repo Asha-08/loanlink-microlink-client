@@ -11,6 +11,7 @@ import ApplyLoan from "../pages/ApplyLoan/ApplyLoan";
 import DashboardLayout from "../layout/DashboardLayout";
 import MyLoans from "../pages/Dashboard/MyLoans/MyLoans";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path:'my-loans',
         Component:MyLoans
+      },
+      {
+        path:'payment/:loanId',
+        Component:Payment
       }
     ]
   }

@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyLoans = () => {
   const { user } = useAuth();
@@ -94,9 +95,11 @@ const MyLoans = () => {
                   )}
                     {/* PAY Button - only if feeStatus = Unpaid */}
                   {loan.applicationFeeStatus === "unpaid" && (
+                    <Link to={`/dashboard/payment/${loan._id}`}>
                     <button className="btn btn-warning btn-sm text-white">
                       Pay
                     </button>
+                    </Link>
                   )}
 
                   {/* PAID Badge instead of button */}
