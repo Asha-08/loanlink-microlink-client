@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const PaymentSuccess = () => {
     const [searchParams] = useSearchParams();
-    const [paymentInfo, setPaymentInfo] = useState({});
+    // const [paymentInfo, setPaymentInfo] = useState({});
     const axiosSecure = useAxiosSecure()
     const sessionId = searchParams.get('session_id');
 

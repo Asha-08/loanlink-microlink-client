@@ -41,6 +41,12 @@ const DashboardLayout = () => {
              <span className="is-drawer-close:hidden">My Loans</span>
             </NavLink>
         </li>
+        <li>
+            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="MyProfile" to ='/dashboard/my-profile'>
+            <HandCoins></HandCoins>
+             <span className="is-drawer-close:hidden">My Profile</span>
+            </NavLink>
+        </li>
 
         {/* List item */}
         <li>
