@@ -1,5 +1,6 @@
 import { HandCoins } from 'lucide-react'
 import React from 'react'
+import { CgProfile } from 'react-icons/cg'
 import { Link, NavLink, Outlet } from 'react-router'
 
 const DashboardLayout = () => {
@@ -43,7 +44,7 @@ const DashboardLayout = () => {
         </li>
         <li>
             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="MyProfile" to ='/dashboard/my-profile'>
-            <HandCoins></HandCoins>
+            <CgProfile />
              <span className="is-drawer-close:hidden">My Profile</span>
             </NavLink>
         </li>

@@ -1,6 +1,6 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -20,6 +20,7 @@ const ApplyLoan = () => {
   } = useForm();
    
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
 
 
   const handleLoanApplication = (data) => {
@@ -49,6 +50,16 @@ const ApplyLoan = () => {
             axiosSecure.post('/loans',data)
             .then(res=>{
                 console.log('after saving loan',res.data);
+                if(res.data.insertedId){
+                  navigate('/dashboard/my-loans')
+                  Swal.fire({
+                    position:"top-end",
+                    icon:"success",
+                    title: "Loan application has created",
+                    showConfirmButton:false,
+                    timer:1500
+                  });
+                }
             })
         }
     })
