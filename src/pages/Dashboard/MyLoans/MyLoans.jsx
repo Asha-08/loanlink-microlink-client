@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import PaymentDetailsModal from "../Payment/PaymentDetailsModal";
 
 const MyLoans = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState(null);
 
   const { data: loans = [],refetch } = useQuery({
     queryKey: ["myloans", user?.email],
@@ -57,6 +61,14 @@ const MyLoans = () => {
         console.log(res.data.url);
         window.location.assign(res.data.url);
     }
+
+    // payment details modal
+
+    const handleOpenPaymentModal = async (loanId) => {
+    const res = await axiosSecure.get(`/payments?loanId=${loanId}`);
+    setSelectedPayment(res.data[0]);   // single payment entry
+    setOpenModal(true);
+  };
 
   return (
     <div>
@@ -118,7 +130,9 @@ const MyLoans = () => {
 
                   {/* PAID Badge instead of button */}
                   {loan.applicationFeeStatus === "paid" && (
-                    <span className="badge badge-success">Paid</span>
+                    <span
+                     onClick={() => handleOpenPaymentModal(loan._id)}
+                     className="badge badge-success cursor-pointer">Paid</span>
                   )}
                 </td>
               </tr>
@@ -126,6 +140,13 @@ const MyLoans = () => {
           </tbody>
         </table>
       </div>
+      {/* modal rendar */}
+      {openModal && (
+        <PaymentDetailsModal
+          payment={selectedPayment}
+          onClose={() => setOpenModal(false)}
+        />
+      )}
     </div>
   );
 };
