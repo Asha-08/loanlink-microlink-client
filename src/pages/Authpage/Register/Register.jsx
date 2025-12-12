@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router";
 
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SocialLogin from "../SocialLogin/SocialLogin";
 // import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Register = () => {
@@ -16,7 +18,7 @@ const Register = () => {
   const { registerUser, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  //   const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
 
   const handleRegisration = (data) => {
     const profileImg = data.photo[0];
@@ -42,14 +44,14 @@ const Register = () => {
             email: data.email,
             displayName: data.name,
             photoURL: photoURL,
-            role: data.role,
+            requestedRole: data.role,
           };
-          //   axiosSecure.post('/users',userInfo)
-          //   .then(res=>{
-          //     if(res.data.insertedId){
-          //       console.log('user created int the database');
-          //     }
-          //   })
+            axiosSecure.post('/users',userInfo)
+            .then(res=>{
+              if(res.data.insertedId){
+                console.log('user created int the database');
+              }
+            })
 
           // update user profile to firebase
           const userProfile = {
@@ -172,6 +174,7 @@ const Register = () => {
           </Link>
         </p>
       </form>
+       <SocialLogin></SocialLogin>
     </div>
   );
 };

@@ -71,7 +71,7 @@ const MyLoans = () => {
   // payment details modal
 
   const handleOpenPaymentModal = async (loanId) => {
-    const res = await axiosSecure.get(`/payments?loanId=${loanId}`);
+    const res = await axiosSecure.get(`/payments?email=${user.email}`);
     setSelectedPayment(res.data[0]); // single payment entry
     setOpenModal(true);
   };
