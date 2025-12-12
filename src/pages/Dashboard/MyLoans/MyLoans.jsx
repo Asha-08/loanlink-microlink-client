@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 import PaymentDetailsModal from "../Payment/PaymentDetailsModal";
+import LoanDetailsModal from "./LoanDetailsModal";
 
 const MyLoans = () => {
   const { user } = useAuth();
@@ -12,8 +13,10 @@ const MyLoans = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const [openLoanModal, setOpenLoanModal] = useState(false);
+  const [selectedLoan, setSelectedLoan] = useState(null);
 
-  const { data: loans = [],refetch } = useQuery({
+  const { data: loans = [], refetch } = useQuery({
     queryKey: ["myloans", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/loans?email=${user.email}`);
@@ -47,27 +50,37 @@ const MyLoans = () => {
         }
       }
     });
-  }
+  };
 
   const handlePayment = async (loan) => {
-        const paymentInfo = {
-            cost: loan.applicationFee,
-            loanId: loan._id,
-            email: loan.email,
-            loanTitle: loan.loanTitle
-        }
-        const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);
+    const paymentInfo = {
+      cost: loan.applicationFee,
+      loanId: loan._id,
+      email: loan.email,
+      loanTitle: loan.loanTitle,
+    };
+    const res = await axiosSecure.post(
+      "/payment-checkout-session",
+      paymentInfo
+    );
 
-        console.log(res.data.url);
-        window.location.assign(res.data.url);
-    }
+    console.log(res.data.url);
+    window.location.assign(res.data.url);
+  };
 
-    // payment details modal
+  // payment details modal
 
-    const handleOpenPaymentModal = async (loanId) => {
+  const handleOpenPaymentModal = async (loanId) => {
     const res = await axiosSecure.get(`/payments?loanId=${loanId}`);
-    setSelectedPayment(res.data[0]);   // single payment entry
+    setSelectedPayment(res.data[0]); // single payment entry
     setOpenModal(true);
+  };
+
+  // view loan details modal
+
+  const handleViewLoan = (loan) => {
+    setSelectedLoan(loan);
+    setOpenLoanModal(true);
   };
 
   return (
@@ -87,38 +100,42 @@ const MyLoans = () => {
             </tr>
           </thead>
           <tbody>
-            {loans.map((loan,index) => (
+            {loans.map((loan, index) => (
               <tr key={loan._id}>
-                <th>{index+1}</th>
+                <th>{index + 1}</th>
                 <td>{loan._id}</td>
                 <td>{loan.loanTitle}</td>
                 <td>${loan.loanAmount}</td>
                 <td
-                    className={`badge ${
-                      loan.status === "pending"
-                        ? "badge-warning"
-                        : loan.status === "Approved"
-                        ? "badge-success"
-                        : "badge-error"
-                    }`}
-                  >
-                    {loan.status}
-                  </td>
+                  className={`badge ${
+                    loan.status === "pending"
+                      ? "badge-warning"
+                      : loan.status === "Approved"
+                      ? "badge-success"
+                      : "badge-error"
+                  }`}
+                >
+                  {loan.status}
+                </td>
                 <td>
-                    {/* VIEW Button - always visible */}
-                  <button className="btn btn-info btn-sm text-white">
+                  {/* VIEW Button - always visible */}
+                  <button
+                    className="btn btn-info btn-sm text-white cursor-pointer"
+                    onClick={() => handleViewLoan(loan)}
+                  >
                     View
                   </button>
 
-                    {/* CANCEL Button - Only if status = Pending */}
+                  {/* CANCEL Button - Only if status = Pending */}
                   {loan.status === "pending" && (
                     <button
-                    onClick={() => handleCancelLoan(loan._id)}
-                     className="btn btn-error btn-sm text-white mx-2">
+                      onClick={() => handleCancelLoan(loan._id)}
+                      className="btn btn-error btn-sm text-white mx-2"
+                    >
                       Cancel
                     </button>
                   )}
-                    {/* PAY Button - only if feeStatus = Unpaid */}
+                  {/* PAY Button - only if feeStatus = Unpaid */}
                   {loan.applicationFeeStatus === "unpaid" && (
                     <button
                       onClick={() => handlePayment(loan)}
@@ -131,8 +148,11 @@ const MyLoans = () => {
                   {/* PAID Badge instead of button */}
                   {loan.applicationFeeStatus === "paid" && (
                     <span
-                     onClick={() => handleOpenPaymentModal(loan._id)}
-                     className="badge badge-success cursor-pointer">Paid</span>
+                      onClick={() => handleOpenPaymentModal(loan._id)}
+                      className="badge badge-success cursor-pointer"
+                    >
+                      Paid
+                    </span>
                   )}
                 </td>
               </tr>
@@ -145,6 +165,14 @@ const MyLoans = () => {
         <PaymentDetailsModal
           payment={selectedPayment}
           onClose={() => setOpenModal(false)}
+        />
+      )}
+
+      {/* loan details modal render */}
+      {openLoanModal && (
+        <LoanDetailsModal
+          loan={selectedLoan}
+          onClose={() => setOpenLoanModal(false)}
         />
       )}
     </div>
