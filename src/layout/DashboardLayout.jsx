@@ -1,10 +1,13 @@
 import { HandCoins } from "lucide-react";
 import React from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaUsersRectangle } from "react-icons/fa6";
+import {  FaFileSignature, FaUsersRectangle } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router";
+import useRole from "../hooks/useRole";
+import { FaListAlt } from "react-icons/fa";
 
 const DashboardLayout = () => {
+  const {role} = useRole();
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -93,7 +96,10 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
-            <li>
+            {/* admin only */}
+            {
+              role === 'admin' && <>
+              <li>
               <NavLink
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Manage Users"
@@ -103,6 +109,28 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Manage Users</span>
               </NavLink>
             </li>
+              <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="All Loans"
+                to="/dashboard/all-loan"
+              >
+                <FaListAlt />
+                <span className="is-drawer-close:hidden">All Loans</span>
+              </NavLink>
+            </li>
+              <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Loan Applications"
+                to="/dashboard/loan-applications"
+              >
+                <FaFileSignature />
+                <span className="is-drawer-close:hidden"> Loan Applications</span>
+              </NavLink>
+            </li>
+              </>
+            }
 
             {/* List item */}
             <li>
