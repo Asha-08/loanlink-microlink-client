@@ -127,7 +127,8 @@ const MyLoans = () => {
                   </button>
 
                   {/* CANCEL Button - Only if status = Pending */}
-                  {loan.status === "pending" && (
+                  {(loan.status === "fee-not-paid" ||
+                    loan.status === "pending") && (
                     <button
                       onClick={() => handleCancelLoan(loan._id)}
                       className="btn btn-error btn-sm text-white mx-2"
@@ -135,6 +136,7 @@ const MyLoans = () => {
                       Cancel
                     </button>
                   )}
+
                   {/* PAY Button - only if feeStatus = Unpaid */}
                   {loan.applicationFeeStatus === "unpaid" && (
                     <button

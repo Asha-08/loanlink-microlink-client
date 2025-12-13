@@ -4,7 +4,8 @@ import { CgProfile } from "react-icons/cg";
 import {  FaFileSignature, FaUsersRectangle } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
-import { FaListAlt } from "react-icons/fa";
+import { FaFileInvoiceDollar, FaListAlt } from "react-icons/fa";
+import { MdPendingActions, MdVerified } from "react-icons/md";
 
 const DashboardLayout = () => {
   const {role} = useRole();
@@ -129,6 +130,56 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden"> Loan Applications</span>
               </NavLink>
             </li>
+              </>
+            }
+
+            {/* manager only route */}
+            {
+              role === 'manager' && <>
+              <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Loan"
+                to="/dashboard/add-loan"
+              >
+                <FaFileSignature />
+                <span className="is-drawer-close:hidden">Add Loan</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="  Manage Loans"
+                to="/dashboard/manage-loans"
+              >
+                <FaFileInvoiceDollar />
+                <span className="is-drawer-close:hidden">  Manage Loans</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Pending Loan Applications"
+                to="/dashboard/pending-loans"
+              >
+                <MdPendingActions />
+                <span className="is-drawer-close:hidden"> Pending Loan Applications</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="  Approved Loan Applications"
+                to="/dashboard/approved-loans"
+              >
+                <MdVerified />
+                <span className="is-drawer-close:hidden">  Approved Loan Applications</span>
+              </NavLink>
+            </li>
+
               </>
             }
 

@@ -29,7 +29,7 @@ const ApplyLoan = () => {
     console.log("Final Data sent to backend", data);
     let cost = 10;
     data.applicationFee = cost;
-    data.status = "pending";
+    data.status = "fee-not-paid";
     data.applicationFeeStatus = "unpaid",
     data.createdAt = new Date(),
 
@@ -152,7 +152,7 @@ const ApplyLoan = () => {
         <div>
           <label className="font-semibold">Contact Number</label>
           <input
-            type="text"
+            type="number"
             {...register("contactNumber", { required: true })}
             className="input input-bordered w-full mt-1"
           />
@@ -164,7 +164,7 @@ const ApplyLoan = () => {
         <div>
           <label className="font-semibold">National ID / Passport Number</label>
           <input
-            type="text"
+            type="number"
             {...register("nid", { required: true })}
             className="input input-bordered w-full mt-1"
           />

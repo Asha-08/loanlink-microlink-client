@@ -5,11 +5,28 @@ import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+  const [searchText, setSearchText] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
-  const { data: users = [],refetch } = useQuery({
-    queryKey: ["users"],
+  // const { data: users = [], refetch } = useQuery({
+  //   queryKey: ["users"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get("/users");
+  //     return res.data;
+  //   },
+  // });
+
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users", searchText, roleFilter, statusFilter],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get("/users", {
+        params: {
+          searchText,
+          role: roleFilter,
+          status: statusFilter,
+        },
+      });
       return res.data;
     },
   });
@@ -31,14 +48,11 @@ const ManageUsers = () => {
   //   });
   // };
 
-    
-  
-  const handleApprove = id =>{
-    const updateInfo = {status:'approved'}
-    axiosSecure.patch(`/users/${id}`,updateInfo)
-    .then(res=>{
-      if(res.data.modifiedCount){
-         Swal.fire({
+  const handleApprove = (id) => {
+    const updateInfo = { status: "approved" };
+    axiosSecure.patch(`/users/${id}`, updateInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        Swal.fire({
           icon: "success",
           title: "User Approved Successfully",
           timer: 1200,
@@ -46,8 +60,8 @@ const ManageUsers = () => {
         });
         refetch();
       }
-    })
-  }
+    });
+  };
 
   // suspend handeler
   const handleSuspend = (e, id) => {
@@ -74,7 +88,44 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h2 className="text-4xl">User Role Pending for Approval:</h2>
+      <h2 className="text-4xl">
+        User Role for Approval:{users.length}
+      </h2>
+      <div className="flex flex-col md:flex-row gap-3 my-4">
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search by name or email"
+          className="input input-bordered w-full md:w-1/3"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        {/* Role Filter */}
+        <select
+          className="select select-bordered w-full md:w-1/4"
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+        >
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
+          <option value="manager">Manager</option>
+          <option value="user">User</option>
+        </select>
+
+        {/* Status Filter */}
+        <select
+          className="select select-bordered w-full md:w-1/4"
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
+          <option value="">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="suspended">Suspended</option>
+        </select>
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full min-w-[600px]">
           {/* Table Head */}

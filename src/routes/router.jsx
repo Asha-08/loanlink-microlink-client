@@ -19,6 +19,12 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import AdminAllLoans from "../pages/Dashboard/AllLoan/AdminAllLoans";
 import LoanApplication from "../pages/Dashboard/LoanApplication/LoanApplication";
+import ManagerRoute from "./ManagerRoute";
+import AddLoan from "../pages/ManagerDashboard/AddLoan/AddLoan";
+import ManageLoans from "../pages/ManagerDashboard/ManageLoan/ManageLoans";
+import PendingApplications from "../pages/ManagerDashboard/PendingApplications/PendingApplications";
+import ApprovedApplication from "../pages/ManagerDashboard/ApprovedApplication/ApprovedApplication";
+import LoansDetailsPage from "../pages/Dashboard/LoanDetailsPage/LoansDetailsPage";
 
 
 export const router = createBrowserRouter([
@@ -107,6 +113,34 @@ export const router = createBrowserRouter([
       {
         path: 'payment-cancelled',
         Component: PaymentCancelled
+      },
+      {
+        path: 'add-loan',
+        element:<ManagerRoute>
+          <AddLoan></AddLoan>
+        </ManagerRoute>
+      },
+      {
+        path: 'manage-loans',
+        element:<ManagerRoute>
+          <ManageLoans></ManageLoans>
+        </ManagerRoute>
+      },
+      {
+        path: 'pending-loans',
+        element:<ManagerRoute>
+          <PendingApplications></PendingApplications>
+        </ManagerRoute>
+      },
+      {
+        path: 'approved-loans',
+        element:<ManagerRoute>
+          <ApprovedApplication></ApprovedApplication>
+        </ManagerRoute>
+      },
+      {
+        path:'loan/:id',
+        element:<LoansDetailsPage></LoansDetailsPage>
       },
     ]
   }
