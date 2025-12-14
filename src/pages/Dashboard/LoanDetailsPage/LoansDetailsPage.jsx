@@ -45,6 +45,8 @@ const LoansDetailsPage = () => {
                   ? "bg-green-100 text-green-700"
                   : loan.status === "rejected"
                   ? "bg-red-100 text-red-700"
+                  : loan.status === "fee-not-paid"
+                  ? "bg-yellow-200 text-yellow-700"
                   : "bg-yellow-200 text-yellow-700"
               }
               
