@@ -26,6 +26,7 @@ import PendingApplications from "../pages/ManagerDashboard/PendingApplications/P
 import ApprovedApplication from "../pages/ManagerDashboard/ApprovedApplication/ApprovedApplication";
 import LoansDetailsPage from "../pages/Dashboard/LoanDetailsPage/LoansDetailsPage";
 import PublicDetailsPage from "../pages/Dashboard/LoanDetailsPage/PublicDetailsPage";
+import UpdateLoan from "../pages/Shared/UpdateLoan/UpdateLoan";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,12 @@ export const router = createBrowserRouter([
         path: "my-profile",
         Component: MyProfile,
       },
+      // dashboard routes
+      {
+        path: "update-loan/:id",
+        element: <UpdateLoan />,
+      },
+
       {
         path: "manage-users",
         element: (
