@@ -111,7 +111,7 @@ const ApplyLoan = () => {
           <label className="font-semibold">Interest Rate</label>
           <input
             type="text"
-            value={loanData.interestRate || "10%"}
+            value={loanData.interestRate || "10"}
             readOnly
             className="input input-bordered w-full mt-1 bg-gray-100"
           />

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import LoanDetailsModal from "../MyLoans/LoanDetailsModal";
 
 const LoanApplication = () => {
   const axiosSecure = useAxiosSecure();
   const [filter, setFilter] = useState("all"); // all, pending, approved, rejected
+
+  const [openLoanModal, setOpenLoanModal] = useState(false);
+    const [selectedLoan, setSelectedLoan] = useState(null);
 
   const {
     data: loans = [],
@@ -21,6 +25,13 @@ const LoanApplication = () => {
   });
 
   if (isLoading) return <p className="text-center mt-4">Loading...</p>;
+
+  // view loan details modal
+
+  const handleViewLoan = (loan) => {
+    setSelectedLoan(loan);
+    setOpenLoanModal(true);
+  };
 
   return (
     <div>
@@ -75,11 +86,9 @@ const LoanApplication = () => {
                 </span>
               </td>
               <td className="border px-4 py-2">
-               <button
-                    onClick={() =>
-                      (window.location.href = `/dashboard/loan/${loan._id}`)
-                    }
-                    className="btn btn-outline btn-sm bg-linear-to-tr from-pink-400 to-pink-600 text-white"
+              <button
+                    className="btn bg-linear-to-tr from-pink-400 to-pink-600   transition btn-sm text-white cursor-pointer"
+                    onClick={() => handleViewLoan(loan)}
                   >
                     View
                   </button>
@@ -88,6 +97,14 @@ const LoanApplication = () => {
           ))}
         </tbody>
       </table>
+       {/* loan details modal render */}
+      {openLoanModal && (
+        <LoanDetailsModal
+          loan={selectedLoan}
+          onClose={() => setOpenLoanModal(false)}
+        />
+      )}
+    
     </div>
   );
 };
