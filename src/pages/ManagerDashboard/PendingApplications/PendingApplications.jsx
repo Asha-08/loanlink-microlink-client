@@ -34,7 +34,7 @@ const PendingApplications = () => {
 
       <div className="overflow-x-auto rounded-xl shadow">
         <table className="table w-full bg-base-100">
-          <thead className="bg-base-200 text-base">
+          <thead className="bg-base-200 text-base bg-linear-to-r from-pink-600 to-pink-400 text-white">
             <tr>
               <th>Loan ID</th>
               <th>User Info</th>
@@ -68,7 +68,7 @@ const PendingApplications = () => {
 
                   <button
                      onClick={() => handleUpdateStatus(loan, "rejected")}
-                    className="btn btn-error btn-sm"
+                    className="btn btn-error btn-sm text-white"
                   >
                     Reject
                   </button>

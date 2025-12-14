@@ -18,10 +18,9 @@ const ApplyLoan = () => {
     reset,
     formState: { errors },
   } = useForm();
-   
-  const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate()
 
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const handleLoanApplication = (data) => {
     data.email = user?.email;
@@ -30,10 +29,9 @@ const ApplyLoan = () => {
     let cost = 10;
     data.applicationFee = cost;
     data.status = "fee-not-paid";
-    data.applicationFeeStatus = "unpaid",
-    data.createdAt = new Date(),
-
-    console.log("application fee:", cost);
+    (data.applicationFeeStatus = "unpaid"),
+      (data.createdAt = new Date()),
+      console.log("application fee:", cost);
     // SweetAlert for confirmation
     Swal.fire({
       title: "Confirm Application Fee?",
@@ -43,26 +41,24 @@ const ApplyLoan = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Confirm and Proceed to Payment",
-    }).then((result)=>{
-        if(result.isConfirmed){
-            
-            // save the loan info in to the database
-            axiosSecure.post('/loans',data)
-            .then(res=>{
-                console.log('after saving loan',res.data);
-                if(res.data.insertedId){
-                  navigate('/dashboard/my-loans')
-                  Swal.fire({
-                    position:"top-end",
-                    icon:"success",
-                    title: "Loan application has created",
-                    showConfirmButton:false,
-                    timer:1500
-                  });
-                }
-            })
-        }
-    })
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // save the loan info in to the database
+        axiosSecure.post("/loans", data).then((res) => {
+          console.log("after saving loan", res.data);
+          if (res.data.insertedId) {
+            navigate("/dashboard/my-loans");
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Loan application has created",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -122,13 +118,13 @@ const ApplyLoan = () => {
         </div>
 
         {/* =================== USER INPUT FIELDS =================== */}
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="font-semibold">First Name</label>
             <input
               type="text"
               {...register("firstName", { required: true })}
+              placeholder="Enter your first name"
               className="input input-bordered w-full mt-1"
             />
             {errors.firstName && (
@@ -141,6 +137,7 @@ const ApplyLoan = () => {
             <input
               type="text"
               {...register("lastName", { required: true })}
+              placeholder="Enter your last name"
               className="input input-bordered w-full mt-1"
             />
             {errors.lastName && (
@@ -152,23 +149,36 @@ const ApplyLoan = () => {
         <div>
           <label className="font-semibold">Contact Number</label>
           <input
-            type="number"
-            {...register("contactNumber", { required: true })}
+            type="text"
+            {...register("contactNumber", {
+              required: true,
+              pattern: /^[0-9]+$/,
+            })}
+            placeholder="Enter your contact number"
             className="input input-bordered w-full mt-1"
           />
-          {errors.contactNumber && (
+          {errors.contactNumber?.type === "required" && (
             <p className="text-red-500 text-sm">Required</p>
+          )}
+          {errors.contactNumber?.type === "pattern" && (
+            <p className="text-red-500 text-sm">Numbers only</p>
           )}
         </div>
 
         <div>
           <label className="font-semibold">National ID / Passport Number</label>
           <input
-            type="number"
-            {...register("nid", { required: true })}
+            type="text"
+            {...register("nid", { required: true, pattern: /^[0-9]+$/ })}
+            placeholder="Enter your National ID / Passport number"
             className="input input-bordered w-full mt-1"
           />
-          {errors.nid && <p className="text-red-500 text-sm">Required</p>}
+          {errors.nid?.type === "required" && (
+            <p className="text-red-500 text-sm">Required</p>
+          )}
+          {errors.nid?.type === "pattern" && (
+            <p className="text-red-500 text-sm">Numbers only</p>
+          )}
         </div>
 
         <div>
@@ -176,6 +186,7 @@ const ApplyLoan = () => {
           <input
             type="text"
             {...register("incomeSource", { required: true })}
+            placeholder="Enter your income source"
             className="input input-bordered w-full mt-1"
           />
           {errors.incomeSource && (
@@ -187,11 +198,20 @@ const ApplyLoan = () => {
           <label className="font-semibold">Monthly Income</label>
           <input
             type="number"
-            {...register("monthlyIncome", { required: true })}
+            {...register("monthlyIncome", { required: true, min: 0 })}
+            placeholder="Enter your monthly income"
             className="input input-bordered w-full mt-1"
+            onWheel={(e) => e.target.blur()} // prevent scroll increment
           />
-          {errors.monthlyIncome && (
-            <p className="text-red-500 text-sm">Required</p>
+          {errors.monthlyIncome?.type === "required" && (
+            <p className="text-red-500 text-sm mt-1">
+              Monthly income is required
+            </p>
+          )}
+          {errors.monthlyIncome?.type === "min" && (
+            <p className="text-red-500 text-sm mt-1">
+              Income cannot be negative
+            </p>
           )}
         </div>
 
@@ -199,11 +219,18 @@ const ApplyLoan = () => {
           <label className="font-semibold">Loan Amount</label>
           <input
             type="number"
-            {...register("loanAmount", { required: true })}
+            {...register("loanAmount", { required: true, min: 1 })}
+            placeholder="Enter loan amount"
             className="input input-bordered w-full mt-1"
+            onWheel={(e) => e.target.blur()}
           />
-          {errors.loanAmount && (
+          {errors.loanAmount?.type === "required" && (
             <p className="text-red-500 text-sm">Required</p>
+          )}
+          {errors.loanAmount?.type === "min" && (
+            <p className="text-red-500 text-sm">
+              Amount must be greater than 0
+            </p>
           )}
         </div>
 
@@ -211,6 +238,7 @@ const ApplyLoan = () => {
           <label className="font-semibold">Reason for Loan</label>
           <textarea
             {...register("reason", { required: true })}
+            placeholder="Explain the reason for loan"
             className="textarea textarea-bordered w-full mt-1"
           ></textarea>
           {errors.reason && <p className="text-red-500 text-sm">Required</p>}
@@ -220,6 +248,7 @@ const ApplyLoan = () => {
           <label className="font-semibold">Address</label>
           <textarea
             {...register("address", { required: true })}
+            placeholder="Enter your address"
             className="textarea textarea-bordered w-full mt-1"
           ></textarea>
           {errors.address && <p className="text-red-500 text-sm">Required</p>}
@@ -229,6 +258,7 @@ const ApplyLoan = () => {
           <label className="font-semibold">Extra Notes (Optional)</label>
           <textarea
             {...register("extraNotes")}
+            placeholder="Any extra notes"
             className="textarea textarea-bordered w-full mt-1"
           ></textarea>
         </div>
