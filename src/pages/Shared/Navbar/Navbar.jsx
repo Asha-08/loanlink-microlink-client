@@ -1,14 +1,25 @@
-import React from "react";
-// import Logo from "../../../components/Logo/Logo";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import loanlink from "../../../assets/loanlink.jpg";
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const handleLogOut = () => {
     logOut().catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
 
   const guestLinks = (
     <>
@@ -31,7 +42,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+    <div className="navbar bg-linear-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner  sticky top-0 z-50">
       {/* LEFT */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -42,7 +53,7 @@ const Navbar = () => {
           </div>
          
 
-          <ul tabIndex={-1} className="menu menu-sm dropdown-content mt-3 z-50 w-52 p-2 shadow bg-base-100 rounded-box">
+          <ul tabIndex={-1} className="menu menu-sm dropdown-content mt-3 z-50 w-52 p-2 bg-linear-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner rounded-box">
             {user ? userLinks : guestLinks}
             
           </ul>
@@ -84,16 +95,12 @@ const Navbar = () => {
         {/* Theme Toggle */}
         {/* <input type="checkbox" className="toggle theme-controller" />
          */}
-         <button
-              // onClick={onToggleTheme}
-              aria-label="Toggle theme"
-              className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
-            >
-              {/* simple icon: sun/moon */}
-              <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
-              </svg>
-            </button>
+        <input
+           onChange={(e) => handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+
 
 
         {/* User Avatar + Logout */}

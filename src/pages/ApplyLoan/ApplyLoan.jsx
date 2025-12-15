@@ -24,7 +24,10 @@ const ApplyLoan = () => {
 
   const handleLoanApplication = (data) => {
     data.email = user?.email;
-    data.inerestRate = loanData?.inerestRate || "10%";
+    data.interestRate = loanData?.interestRate || "10%";
+    data.loanTitle = loanData?.title;
+    
+ 
     console.log("Final Data sent to backend", data);
     let cost = 10;
     data.applicationFee = cost;
@@ -62,7 +65,7 @@ const ApplyLoan = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded-xl mt-10">
+    <div className="max-w-3xl mx-auto p-6  shadow rounded-xl mt-10">
       <h2 className="text-2xl font-bold mb-6 text-center">
         Loan Application Form
       </h2>
@@ -78,7 +81,7 @@ const ApplyLoan = () => {
             type="email"
             value={user?.email}
             readOnly
-            className="input input-bordered w-full mt-1 bg-gray-100"
+            className="input input-bordered w-full mt-1 bg-gray-400"
           />
         </div>
 
@@ -89,7 +92,7 @@ const ApplyLoan = () => {
               type="text"
               value={loanData.title}
               readOnly
-              className="input input-bordered w-full mt-1 bg-gray-100"
+              className="input input-bordered w-full mt-1 bg-gray-400"
             />
           </div>
         ) : (
@@ -113,7 +116,7 @@ const ApplyLoan = () => {
             type="text"
             value={loanData.interestRate || "10"}
             readOnly
-            className="input input-bordered w-full mt-1 bg-gray-100"
+            className="input input-bordered w-full mt-1 bg-gray-400"
           />
         </div>
 

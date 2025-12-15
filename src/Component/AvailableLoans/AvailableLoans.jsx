@@ -24,11 +24,11 @@ const AvailableLoans = () => {
             alt={loan.title}
             className="w-full h-40 object-cover rounded"
           />
-          <h3 className="text-xl font-bold mt-2">{loan.title}</h3>
+          <h3 className="text-xl text-gray-600 font-bold mt-2">{loan.title}</h3>
           <p className="text-gray-600 mt-1">
             {loan.shortDescription || loan.description?.slice(0, 100)}...
           </p>
-          <p className="mt-2 font-semibold">Max Loan: ${loan.maxLoanLimit}</p>
+          <p className="mt-2 font-semibold text-gray-600">Max Loan: ${loan.maxLoanLimit}</p>
 
           <button
                   onClick={() => navigate(`/loans/${loan._id}`)}

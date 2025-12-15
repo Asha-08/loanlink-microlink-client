@@ -27,6 +27,7 @@ import ApprovedApplication from "../pages/ManagerDashboard/ApprovedApplication/A
 import LoansDetailsPage from "../pages/Dashboard/LoanDetailsPage/LoansDetailsPage";
 import PublicDetailsPage from "../pages/Dashboard/LoanDetailsPage/PublicDetailsPage";
 import UpdateLoan from "../pages/Shared/UpdateLoan/UpdateLoan";
+import DashBoardHome from "../pages/Dashboard/DashBoardHome/DashBoardHome";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index:true,
+        Component:DashBoardHome
+      },
       {
         path: "my-loans",
         Component: MyLoans,

@@ -40,7 +40,7 @@ const FAQ = () => {
               <h3 className="font-semibold text-lg text-pink-500 mb-2">
                 {faq.question}
               </h3>
-              <p className="text-gray-600">{faq.answer}</p>
+              <p className="text-gray-400">{faq.answer}</p>
             </div>
           ))}
         </div>

@@ -30,6 +30,7 @@ const PendingApplications = () => {
 
   return (
     <div className="p-4">
+      <h2 className='text-3xl text-center font-semibold p-4'>Pending Applications:{loans.length}</h2>
       {/* Responsive Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
@@ -45,11 +46,11 @@ const PendingApplications = () => {
           </thead>
           <tbody>
             {loans.map((loan) => (
-              <tr key={loan._id} className="hover:bg-gray-50">
+              <tr key={loan._id} >
                 <td className="border px-4 py-2">{loan._id}</td>
                 <td className="border px-4 py-2">
                   {loan.firstName} {loan.lastName} <br />
-                  <span className="text-gray-600">{loan.email}</span>
+                  <span className="text-gray-400">{loan.email}</span>
                 </td>
                 <td className="border px-4 py-2">{loan.loanTitle}</td>
                 <td className="border px-4 py-2">${loan.loanAmount}</td>

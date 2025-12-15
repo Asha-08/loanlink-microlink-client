@@ -42,7 +42,7 @@ const CustomerfeedBack = () => {
         <h3 className="text-3xl font-bold mb-4 text-pink-500">
           Customer Feedback
         </h3>
-        <p className="text-gray-600 mb-12">
+        <p className="text-gray-400 mb-12">
           Hear what our customers say about their experience.
         </p>
 

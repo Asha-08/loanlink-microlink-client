@@ -6,7 +6,7 @@ import { FaSquareXTwitter} from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner">
+    <footer className="bg-linear-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Logo + Description */}
         <div className="flex flex-col gap-3">

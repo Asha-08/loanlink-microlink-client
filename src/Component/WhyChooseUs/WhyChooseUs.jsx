@@ -25,12 +25,12 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="bg-pink-50 py-16">
+    <section className=" py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-pink-500 mb-4">
           Why Choose Us
         </h2>
-        <p className="text-gray-600 mb-12">
+        <p className="text-gray-400 mb-12">
           We provide reliable, secure, and user-friendly loan solutions.
         </p>
 
@@ -38,7 +38,7 @@ const WhyChooseUs = () => {
           {features.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-pink-50 p-6 rounded-xl shadow-md text-center"
             >
               <div className="text-5xl mb-4">{item.icon}</div>
               <h3 className="text-xl font-semibold text-pink-500 mb-2">

@@ -6,7 +6,7 @@ import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
 import { FaFileInvoiceDollar, FaListAlt } from "react-icons/fa";
 import { MdPendingActions, MdVerified } from "react-icons/md";
-
+import logo from "../assets/loanlink.jpg"
 const DashboardLayout = () => {
   const { role } = useRole();
 
@@ -53,7 +53,12 @@ const DashboardLayout = () => {
         <div className="flex min-h-full flex-col items-start bg-pink-100 text-pink-700 w-64">
           <ul className="menu w-full grow">
             <li>
-              <Link to="/" className="px-4 py-2 hover:bg-pink-100 rounded">
+              <Link to ="/">
+              <img className="w-16 h-12" src={logo} alt="" />
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard" className="px-4 py-2 hover:bg-pink-100 rounded">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

@@ -15,7 +15,7 @@ const ApprovedApplication = () => {
 
   return (
     <div>
-      <h2>Approved Applications:{loans.length}</h2>
+      <h2 className='text-3xl text-center font-semibold p-4'>Approved Applications:{loans.length}</h2>
 
         <div className="overflow-x-auto rounded-xl shadow ">
         <table className="table w-full bg-base-100">

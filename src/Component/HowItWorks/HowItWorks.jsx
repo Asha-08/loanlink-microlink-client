@@ -35,12 +35,12 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-     <section className="bg-white py-16">
+     <section className="py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold mb-4 text-pink-500">
           How It Works
         </h2>
-        <p className="text-gray-600 mb-12">
+        <p className="text-gray-400 mb-12">
           Follow these simple steps to apply and manage your loan seamlessly.
         </p>
 
@@ -54,7 +54,7 @@ const HowItWorks = () => {
               <h3 className="text-xl font-semibold text-pink-500 mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-600">{step.description}</p>
+              <p className="text-gray-400">{step.description}</p>
             </div>
           ))}
         </div>
