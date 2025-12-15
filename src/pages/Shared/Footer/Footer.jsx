@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 import loanlink from "../../../assets/loanlink.jpg";
-import { FacebookIcon, XIcon } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaSquareXTwitter} from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -67,17 +67,18 @@ const Footer = () => {
         <div>
           <h3 className="text-md font-semibold mb-3">Follow Us</h3>
           <div className="flex gap-4 mt-2">
-            <a
-              href="#"
-              className="hover:text-pink-500 transition-colors duration-300"
-            >
-              <XIcon size={20} />
-            </a>
+            
             <a
               href="#"
               className="hover:text-pink-500 transition-colors duration-300"
             >
               <FaFacebook size={20} />
+            </a>
+            <a
+              href="#"
+              className="hover:text-pink-500 transition-colors duration-300"
+            >
+              <FaSquareXTwitter size={20} />
             </a>
             <a
               href="#"
@@ -97,7 +98,6 @@ const Footer = () => {
         {/* Copyright */}
         <div className="flex flex-col justify-end text-sm text-gray-500 dark:text-gray-400 mt-6 lg:mt-0">
           <p>© {new Date().getFullYear()} LoanLink. All rights reserved.</p>
-          
         </div>
       </div>
     </footer>
