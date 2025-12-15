@@ -51,7 +51,7 @@ const PublicDetailsPage = () => {
           <strong>Interest Rate:</strong> {loan.interestRate}%
         </p>
         <p>
-          <strong>Max Limit:</strong> ৳{loan.maxLoanLimit}
+          <strong>Max Limit:</strong> ${loan.maxLoanLimit}
         </p>
         <p>
           <strong>EMI Plans:</strong> {loan.emiPlans}

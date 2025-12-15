@@ -30,23 +30,6 @@ const PendingApplications = () => {
 
   return (
     <div className="p-4">
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {["all", "pending", "approved", "rejected"].map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-4 py-1 rounded ${
-              filter === f
-                ? "bg-pink-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-pink-300 hover:text-white transition"
-            }`}
-          >
-            {f.charAt(0).toUpperCase() + f.slice(1)}
-          </button>
-        ))}
-      </div>
-
       {/* Responsive Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
@@ -83,12 +66,26 @@ const PendingApplications = () => {
                     {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
                   </span>
                 </td>
-                <td className="border px-4 py-2">
+                <td className="flex gap-2 justify-center">
+                  <button
+                    onClick={() => handleUpdateStatus(loan, "approved")}
+                    className="btn btn-success btn-sm"
+                  >
+                    Approve
+                  </button>
+
+                  <button
+                    onClick={() => handleUpdateStatus(loan, "rejected")}
+                    className="btn btn-error btn-sm"
+                  >
+                    Reject
+                  </button>
+
                   <button
                     onClick={() =>
                       (window.location.href = `/dashboard/loan/${loan._id}`)
                     }
-                    className="btn btn-outline btn-sm bg-linear-to-tr from-pink-400 to-pink-600 text-white hover:from-pink-500 hover:to-pink-700 transition"
+                    className="btn btn-outline bg-linear-to-tr from-pink-400 to-pink-600 transition btn-sm text-white"
                   >
                     View
                   </button>

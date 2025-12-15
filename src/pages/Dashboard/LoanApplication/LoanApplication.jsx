@@ -87,7 +87,7 @@ const LoanApplication = () => {
               </td>
               <td className="border px-4 py-2">
               <button
-                    className="btn bg-linear-to-tr from-pink-400 to-pink-600   transition btn-sm text-white cursor-pointer"
+                    className="btn bg-linear-to-tr from-pink-400 to-pink-600 transition btn-sm text-white cursor-pointer"
                     onClick={() => handleViewLoan(loan)}
                   >
                     View
