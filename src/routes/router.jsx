@@ -28,6 +28,8 @@ import LoansDetailsPage from "../pages/Dashboard/LoanDetailsPage/LoansDetailsPag
 import PublicDetailsPage from "../pages/Dashboard/LoanDetailsPage/PublicDetailsPage";
 import UpdateLoan from "../pages/Shared/UpdateLoan/UpdateLoan";
 import DashBoardHome from "../pages/Dashboard/DashBoardHome/DashBoardHome";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UserRoute from "./UserRoute";
 
 export const router = createBrowserRouter([
   {
@@ -96,7 +98,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-loans",
-        Component: MyLoans,
+        element:<UserRoute>
+          <MyLoans></MyLoans>
+        </UserRoute>,
       },
       {
         path: "my-profile",
@@ -181,5 +185,9 @@ export const router = createBrowserRouter([
         element: <LoansDetailsPage></LoansDetailsPage>,
       },
     ],
+  },
+  {
+    path:"/*",
+    Component:ErrorPage
   },
 ]);

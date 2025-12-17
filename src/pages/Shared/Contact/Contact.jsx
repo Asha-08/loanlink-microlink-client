@@ -7,10 +7,10 @@ const Contact = () => {
 
         {/* Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-pink-600 mb-4">
             Contact Us
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto">
             Have questions or need support? Feel free to reach out to us.
             We are always happy to help.
           </p>
@@ -21,28 +21,28 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-6">
             <div className="bg-pink-50/40 border border-pink-100 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-pink-600 mb-2">
                 Our Office
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 Dhaka, Bangladesh
               </p>
             </div>
 
             <div className="bg-pink-50/40 border border-pink-100 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-pink-600 mb-2">
                 Email
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 support@loanplatform.com
               </p>
             </div>
 
             <div className="bg-pink-50/40 border border-pink-100 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl font-semibold text-pink-600 mb-2">
                 Phone
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 +880 1234 567 890
               </p>
             </div>

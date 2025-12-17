@@ -38,8 +38,8 @@ const Login = () => {
 
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-      <h3 className="text-3xl text-center">Welcome back</h3>
-      <p className="text-center">Please Login</p>
+      <h3 className="text-3xl text-center text-pink-500">Welcome back</h3>
+      <p className="text-center text-pink-500">Please Login</p>
 
       <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
         <fieldset className="fieldset">
@@ -72,14 +72,14 @@ const Login = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral mt-4">Login</button>
+          <button className="btn btn-neutral mt-4 bg-pink-600">Login</button>
         </fieldset>
 
         <p>
           New to Zap Shift{" "}
           <Link
             state={location.state}
-            className="text-blue-400 underline"
+            className="text-pink-500 underline"
             to="/register"
           >
             Register

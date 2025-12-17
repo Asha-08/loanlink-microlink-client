@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import loanlink from "../../../assets/loanlink.jpg";
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -67,7 +68,7 @@ const Navbar = () => {
         w-10 h-10               /* mobile */
         sm:w-12 sm:h-12         /* tablet */
         lg:w-14 lg:h-14         /* laptop */
-        object-cover rounded-lg
+        object-cover rounded-full
       "
     />
 

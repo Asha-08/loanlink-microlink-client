@@ -14,7 +14,7 @@ const Footer = () => {
             <img
               src={loanlink}
               alt="LoanLink Logo"
-              className="w-12 h-12 rounded-lg"
+              className="w-12 h-12 rounded-full"
             />
             <span className="text-lg font-semibold">LoanLink</span>
           </Link>

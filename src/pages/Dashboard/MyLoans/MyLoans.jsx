@@ -107,7 +107,7 @@ const MyLoans = () => {
                 <td>{loan.loanTitle}</td>
                 <td>${loan.loanAmount}</td>
                 <td
-                  className={`badge ${
+                  className={`badge text-white  ${
                     loan.status === "pending"
                       ? "badge-warning"
                       : loan.status === "Approved"

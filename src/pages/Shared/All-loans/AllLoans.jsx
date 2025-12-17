@@ -20,7 +20,7 @@ const AllLoans = () => {
   }
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-center mb-8">
+      <h2 className="text-3xl font-bold text-center mb-8 text-pink-500">
         All Available Loans
       </h2>
 
@@ -59,7 +59,7 @@ const AllLoans = () => {
               <div className="card-actions justify-end mt-4">
                 <button
                   onClick={() => navigate(`/loans/${loan._id}`)}
-                  className="btn btn-primary btn-sm"
+                  className="btn bg-pink-500 btn-sm"
                 >
                   View Details
                 </button>

@@ -76,7 +76,10 @@ const DashboardLayout = () => {
               </Link>
             </li>
 
-            <li>
+           {
+            (role ==="user" || role === "borrower")&&(
+              <>
+               <li>
               <NavLink
                 to="/dashboard/my-loans"
                 className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
@@ -84,6 +87,9 @@ const DashboardLayout = () => {
                 <HandCoins /> My Loans
               </NavLink>
             </li>
+              </>
+            )
+           }
             <li>
               <NavLink
                 to="/dashboard/my-profile"

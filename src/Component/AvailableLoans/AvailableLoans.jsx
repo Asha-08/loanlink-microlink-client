@@ -1,7 +1,7 @@
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const AvailableLoans = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +16,14 @@ const AvailableLoans = () => {
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+   <div className="max-w-7xl mx-auto p-6 text-center">
+    <h2 className="text-4xl font-bold mb-4 text-pink-500">
+          Explore Available Loans
+        </h2>
+        <p className="text-gray-400 mb-12">
+          Compare loan types, interest rates, and apply easily.
+        </p>
+     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
       {loans.map((loan) => (
         <div key={loan._id} className="card bg-white shadow-md p-4 rounded">
           <img
@@ -40,6 +47,20 @@ const AvailableLoans = () => {
         </div>
       ))}
     </div>
+    <Link
+        to="/all-loans"
+        className="
+          btn
+          my-6
+          bg-pink-500
+          text-white 
+          bottom-4 right-4
+          sm:bottom-6 sm:right-6
+        "
+      >
+       View All Loans
+      </Link>
+   </div>
   );
 };
 
