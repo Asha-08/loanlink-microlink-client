@@ -6,6 +6,10 @@ import HowItWorks from '../../Component/HowItWorks/HowItWorks'
 import CustomerfeedBack from '../../Component/Customerfeedback/CustomerfeedBack'
 import WhyChooseUs from '../../Component/WhyChooseUs/WhyChooseUs'
 import FAQ from '../../Component/FAQ/FAQ'
+import OurMission from '../../Component/OurMission/OurMission';
+import Newsletter from '../../Component/Newslatter/Newsletter';
+import ImpactShowcase from '../../Component/ImpactShowcase/ImpactShowcase';
+import LoanCalculator from '../../Component/LoanCalculator/LoanCalculator';
 
 const sectionVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -18,7 +22,9 @@ const sectionVariant = {
 
 const Home = () => {
  return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden  bg-gray-50 dark:bg-[#0b1120]
+        text-gray-900 dark:text-gray-100
+        transition-colors duration-300">
       {/* Hero (load animation) */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
@@ -38,6 +44,14 @@ const Home = () => {
         <AvailableLoans />
       </motion.div>
 
+      {/* our mission */}
+
+      <OurMission></OurMission>
+
+      {/* impact shoecase */}
+
+      <ImpactShowcase></ImpactShowcase>
+
       {/* How It Works */}
       <motion.div
         variants={sectionVariant}
@@ -47,6 +61,10 @@ const Home = () => {
       >
         <HowItWorks />
       </motion.div>
+
+      {/* calculator */}
+
+      <LoanCalculator></LoanCalculator>
 
       {/* Why Choose Us */}
       <motion.div
@@ -77,6 +95,8 @@ const Home = () => {
       >
         <FAQ />
       </motion.div>
+
+      <Newsletter></Newsletter>
     </div>
   );
 }

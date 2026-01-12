@@ -28,8 +28,8 @@ const Navbar = () => {
       <li><NavLink to="/all-loans">All Loans</NavLink></li>
       <li><NavLink to="/about-us">About Us</NavLink></li>
       <li><NavLink to="/contact">Contact</NavLink></li>
-      <li><NavLink to="/login">Login</NavLink></li>
-      <li><NavLink to="/register">Register</NavLink></li>
+      <li><NavLink to="/blogs">Blogs</NavLink></li>
+      
     </>
   );
 
@@ -38,12 +38,14 @@ const Navbar = () => {
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="/all-loans">All Loans</NavLink></li>
       <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-      <li><NavLink to="/dashboard/my-loans">My Loans</NavLink></li>
+      <li><NavLink to="/about-us">About Us</NavLink></li>
+      <li><NavLink to="/contact">Contact</NavLink></li>
+      <li><NavLink to="/blogs">Blogs</NavLink></li>
     </>
   );
 
   return (
-    <div className="navbar bg-linear-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner  sticky top-0 z-50">
+    <div className="navbar bg-primary text-white shadow-inner  sticky top-0 z-50">
       {/* LEFT */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -54,7 +56,7 @@ const Navbar = () => {
           </div>
          
 
-          <ul tabIndex={-1} className="menu menu-sm dropdown-content mt-3 z-50 w-52 p-2 bg-linear-to-r from-pink-200 via-pink-100 to-pink-300 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-black dark:text-white shadow-inner rounded-box">
+          <ul tabIndex={-1} className="menu menu-sm dropdown-content mt-3 z-50 w-52 p-2 bg-primary dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 text-white dark:text-white shadow-inner rounded-box">
             {user ? userLinks : guestLinks}
             
           </ul>
@@ -112,12 +114,12 @@ const Navbar = () => {
                 <img src={user.photoURL || "https://i.ibb.co/YcZq7kP/default.jpg"} alt="user" />
               </div>
             </div>
-            <button onClick={handleLogOut} className="btn border-pink-500 text-pink-600">Logout</button>
+            <button onClick={handleLogOut} className="btn border-primary text-primary">Logout</button>
           </div>
         ) : (
            <div className="flex items-center gap-2">
-      <Link className="btn border-pink-500 text-pink-600" to="/login">Login</Link>
-      <Link className="btn btn-outline bg-linear-to-tr from-pink-400 to-pink-600 text-white" to="/register">Register</Link>
+      <Link className="btn border-primary text-primary hover:bg-primary hover:text-white hover:border-white" to="/login">Login</Link>
+      <Link className="btn btn-outline btn-primary text-white border-white hover:bg-white hover:border-primary hover:text-primary" to="/register">Register</Link>
     </div>
         )}
       </div>

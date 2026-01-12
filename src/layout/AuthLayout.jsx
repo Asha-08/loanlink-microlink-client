@@ -6,15 +6,15 @@ import Footer from '../pages/Shared/Footer/Footer';
 
 const AuthLayout = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className=" mx-auto">
       <Navbar></Navbar>
       <div className='flex items-center'>
         <div className='flex-1 my-8'>
           <Outlet></Outlet>
         </div>
-        <div className="flex-1">
+        {/* <div className="flex-1">
           <img src={authImage} alt="" />
-        </div>
+        </div> */}
       </div>
       <Footer></Footer>
     </div>

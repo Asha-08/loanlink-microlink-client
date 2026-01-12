@@ -7,6 +7,7 @@ import useRole from "../hooks/useRole";
 import { FaFileInvoiceDollar, FaListAlt } from "react-icons/fa";
 import { MdPendingActions, MdVerified } from "react-icons/md";
 import logo from "../assets/loanlink.jpg"
+
 const DashboardLayout = () => {
   const { role } = useRole();
 
@@ -17,7 +18,7 @@ const DashboardLayout = () => {
       {/* Drawer Content */}
       <div className="drawer-content p-4 w-full">
         {/* Navbar */}
-        <nav className="navbar w-full bg-pink-100 text-pink-700 mb-4 rounded-lg shadow">
+        <nav className="navbar w-full bg-white text-[#0050b2] mb-4 rounded-lg shadow border border-[#0050b2]/20">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
@@ -38,7 +39,7 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4 font-bold text-lg ">LoanLink Dashboard</div>
+          <div className="px-4 font-bold text-lg">LoanLink Dashboard</div>
         </nav>
 
         {/* Page content */}
@@ -50,15 +51,15 @@ const DashboardLayout = () => {
       {/* Drawer Sidebar */}
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-        <div className="flex min-h-full flex-col items-start bg-pink-100 text-pink-700 w-64">
+        <div className="flex min-h-full flex-col items-start bg-[#0050b2] text-white w-64">
           <ul className="menu w-full grow">
             <li>
-              <Link to ="/">
-              <img className="w-16 h-12" src={logo} alt="" />
+              <Link to="/">
+                <img className="w-16 h-12" src={logo} alt="" />
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" className="px-4 py-2 hover:bg-pink-100 rounded">
+              <Link to="/dashboard" className="px-4 py-2 hover:bg-[#003d8a] rounded">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -76,24 +77,22 @@ const DashboardLayout = () => {
               </Link>
             </li>
 
-           {
-            (role ==="user" || role === "borrower")&&(
+            {(role === "user" || role === "borrower") && (
               <>
-               <li>
-              <NavLink
-                to="/dashboard/my-loans"
-                className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
-              >
-                <HandCoins /> My Loans
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/my-loans"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
+                  >
+                    <HandCoins /> My Loans
+                  </NavLink>
+                </li>
               </>
-            )
-           }
+            )}
             <li>
               <NavLink
                 to="/dashboard/my-profile"
-                className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
               >
                 <CgProfile /> My Profile
               </NavLink>
@@ -104,7 +103,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manage-users"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <FaUsersRectangle /> Manage Users
                   </NavLink>
@@ -112,7 +111,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/all-loan"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <FaListAlt /> All Loans
                   </NavLink>
@@ -120,7 +119,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/loan-applications"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <FaFileSignature /> Loan Applications
                   </NavLink>
@@ -133,7 +132,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/add-loan"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <FaFileSignature /> Add Loan
                   </NavLink>
@@ -141,7 +140,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manage-loans"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <FaFileInvoiceDollar /> Manage Loans
                   </NavLink>
@@ -149,7 +148,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/pending-loans"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <MdPendingActions /> Pending Loan Applications
                   </NavLink>
@@ -157,7 +156,7 @@ const DashboardLayout = () => {
                 <li>
                   <NavLink
                     to="/dashboard/approved-loans"
-                    className="px-4 py-2 hover:bg-pink-100 rounded flex items-center gap-2"
+                    className="px-4 py-2 hover:bg-[#003d8a] rounded flex items-center gap-2"
                   >
                     <MdVerified /> Approved Loan Applications
                   </NavLink>

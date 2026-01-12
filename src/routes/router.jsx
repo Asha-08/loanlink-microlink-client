@@ -30,6 +30,7 @@ import UpdateLoan from "../pages/Shared/UpdateLoan/UpdateLoan";
 import DashBoardHome from "../pages/Dashboard/DashBoardHome/DashBoardHome";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import UserRoute from "./UserRoute";
+import BlogsPage from "../pages/Shared/BlogsPage/BlogsPage";
 
 export const router = createBrowserRouter([
   {
@@ -46,15 +47,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "/loans/:id",
-        element: (
-          <PrivateRoute>
-            <PublicDetailsPage />
-          </PrivateRoute>
-        ),
+        element: <PublicDetailsPage />,
       },
       {
         path: "/about-us",
         Component: AboutUs,
+      },
+      {
+        path: "/blogs",
+        Component: BlogsPage,
       },
       {
         path: "/contact",

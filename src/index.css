@@ -4,6 +4,7 @@
 
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
+  --color-primary: #0050b2;
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
