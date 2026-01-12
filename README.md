@@ -67,3 +67,89 @@ A full-featured **Loan Management System** with **role-based dashboards**, **sec
 ## 🚀 Live URL
 
 Live URL (https://loanlink-microloan.web.app/)
+
+🖥️ How to Run the Project Locally (Overview)
+
+This project follows a standard client–server architecture. To run it locally, the following high-level steps are required.
+
+### Step 1: Clone the Repository
+
+Download the project from GitHub to your local machine and open it in a code editor (VS Code recommended).
+
+### Step 2: Install Dependencies
+
+## The project has two parts:
+
+-Client (Frontend)
+
+-Server (Backend)
+
+Install required packages separately for both frontend and backend using a Node package manager.
+
+### Step 3: Environment Configuration
+
+Create environment configuration files for both frontend and backend.
+
+## --Frontend .env :
+
+-Firebase configuration keys
+
+-API base URL
+
+-Stripe public key
+
+## --Backend .env :
+
+-Server port
+
+-MongoDB connection string
+
+-JWT secret
+
+-Stripe secret key
+
+These environment variables are required for authentication, database connection, and payment processing.
+
+### Step 4: Firebase Setup
+
+-Create a Firebase project
+
+-Enable Authentication (Email & Password)
+
+-Use Firebase credentials in the frontend environment file
+
+Firebase is used for secure user authentication.
+
+### Step 5: Database Setup
+
+-Connect the backend to MongoDB (local or cloud)
+
+-Ensure database connection is successful before starting the server
+
+MongoDB stores users, loans, roles, and application data.
+
+### Step 6: Start the Application
+
+-Start the backend server first
+
+-Then start the frontend client
+
+Once both are running, the application will be accessible from the browser.
+
+### Step 7: Role-Based Access
+
+-Normal users can register and apply for loans
+
+-Admin and Manager roles can be assigned manually from the database or admin controls
+
+-Dashboards are shown based on user role
+
+### Step 8: Ready to Use
+
+After completing the above steps, the Loanlink-Microloan system will run locally with:
+
+Secure authentication
+
+Role-based dashboards
+
+Loan application & management features
